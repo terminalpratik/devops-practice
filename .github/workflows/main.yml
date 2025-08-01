@@ -1,1 +1,27 @@
-token: ${{ secrets.SONAR_TOKEN }}
+name: SonarCloud
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+
+jobs:
+  sonarcloud:
+    name: SonarCloud Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          organization: terminalpratik
+          projectKey: terminalpratik_devops-practice
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
