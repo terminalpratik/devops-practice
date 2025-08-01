@@ -1,0 +1,1 @@
+token: ${{ secrets.SONAR_TOKEN }}
